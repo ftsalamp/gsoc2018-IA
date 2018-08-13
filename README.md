@@ -6,7 +6,7 @@ For details on each of my applications and information on how they work please l
 
 ## Project
 
-My project was **Idea 5 - Integrate the “Scanner” software into the Wayback Machine**. The aim of this project was to identify changes in archives for a given URL and highlight those changes by integrating the [web-monitoring software](https://github.com/edgi-govdata-archiving/web-monitoring) into the Wayback Machine and help to further advance it. This further translates in improving the web-monitoring software, recognising which components are useful to the Internet Archive’s implementation, how they can be best used and extracting and using them in a new project. 
+My project was **Idea 5 - Integrate the “Scanner” software into the Wayback Machine**. The aim of this project was to identify changes in archives for a given URL and highlight those changes by integrating the [web-monitoring software](https://github.com/edgi-govdata-archiving/web-monitoring) into the Wayback Machine and help to further advance it. This further translates into improving the web-monitoring software, recognising which components are useful to the Internet Archive’s implementation, how they can be best used and extracting and using them in a new project. 
 
 The web-monitoring project consists of four components:
 
@@ -50,27 +50,29 @@ Handle env values better | https://github.com/ftsalamp/web-monitoring-processing
 
 ## Web-monitoring-ui
 
-The *web-monitoring-ui* project is a complex React front-end application that communicates with the *web-monitoring-db* Rails backend and undertakes the task of displaying pages for which snapshots exist and display their differences. After studying the component I decided that only the components that render the `diff views` are what our project requires.
+The *web-monitoring-ui* project is a complex React front-end application that communicates with the *web-monitoring-db* Rails backend, undertakes the task of displaying pages for which snapshots exist, and displays their differences. After studying the component, I decided that only the components that render the `diff views` are what our project requires.
 
 ## Wayback-diff
 
-[Wayback-diff](https://github.com/ftsalamp/wayback-diff) is the React component I created for the Google Summer of Code 2018 and will be integrated into the Wayback Machine. It queries the *wm-diffing-server (part of the web-monitoring-processing app)* for the differences between two captures of a webpage. *wm-diffing-server* in turn fetches the two captures from the Wayback Machine, it calculates their differences and it returns a JSON response to the component. Then *wayback-diff* renders the snapshots with their differences marked in the user’s browser. This component is exported as an ES module and can be used in any React project.
+[Wayback-diff](https://github.com/ftsalamp/wayback-diff) is the React component which I created for the Google Summer of Code 2018 and will be integrated into the Wayback Machine. It queries the *wm-diffing-server (part of the web-monitoring-processing app)* for the differences between two captures of a webpage. *wm-diffing-server* in turn fetches the two captures from the Wayback Machine, calculates their differences and returns a JSON response to the component. After that, *wayback-diff* renders the snapshots with their differences marked in the user’s browser. This component is exported as an ES module and can be used in any React project.
 
-As an example project and in order to demo it’s usage I created the [wayback-diff-test repository](https://github.com/ftsalamp/wayback-diff-test). This repository contains an empty project, as it would be initialized using the ```yarn create react-app``` command. It is merely importing wayback-diff and it is using it under a *BrowserRouter*.
+As an example project and in order to demo it’s usage, I created the [wayback-diff-test repository](https://github.com/ftsalamp/wayback-diff-test). This repository contains an empty project, as it would be initialized using the ```yarn create react-app``` command. It is merely importing wayback-diff and it is using it under a *BrowserRouter*.
 
 Trying the same thing in a minimal project my mentor created the [minimal-react-starter](https://github.com/vbanos/minimal-react-starter/tree/experiment) repository. There, he tried to import and use my component. This is where with [a Pull request](https://github.com/vbanos/minimal-react-starter/pull/1) I resolved a configuration issue with *express* thus, providing anyone with guidance if they want to use this component with express. 
 
 ## wayback-discover-diff
 
-[Wayback-discover-diff](https://github.com/ftsalamp/wayback-discover-diff) is a Python server I built, running on Flask and Celery and using Redis as a database that handles and calculates the Simhash value of snapshots of webpages.
+[Wayback-discover-diff](https://github.com/ftsalamp/wayback-discover-diff) is a Python server I built which runs on Flask and Celery and uses Redis as a database that handles and calculates the Simhash value of snapshots of webpages.
 
-During the development of *wayback-discover-diff* my mentor and I saw that it’s execution was not fast enough to be practical to use in any use case. So I started looking into making improvements in the algorithm, wherever possible. When all the improvements were made I wrote [a detailed report](https://drive.google.com/file/d/1dMe2f8xggzNf2T74vgiBjIFTaMOuZdDC/view?usp=sharing) describing the improvements I made and the performance boost each of them offered. The result of my improvements brought an **94.32% improvement** of the runtime.
+During the development of *wayback-discover-diff*, my mentor and I saw that it’s execution was not fast enough to be practical to use in any use case. So I started looking into making improvements in the algorithm, wherever possible. When all the improvements were made, I wrote [a detailed report](https://drive.google.com/file/d/1dMe2f8xggzNf2T74vgiBjIFTaMOuZdDC/view?usp=sharing) describing them and the performance boost each of them offered. The result of my improvements brought an **94.32% improvement** of the runtime.
 
 ## Further work
 
 
 ### wayback-diff
 
-
+Dependent on the look of the Wayback Machine’s User Interface wayback-diff might require minor changes to its look to match the WMB’s style.
 
 ### wayback-discover-diff
+
+A feature that is missing right now from the wayback-discover-diff is to calculate how much two snapshots have changed. Since their Simhash value would already be calculated and in the database, getting the distance between two snapshots’ simhash values would be a very useful piece of information. Integrating this kind of information in the Wayback Machine would help its users identify how much a webpage has changed from a specific moment in time. In addition, it would help save both resources for the Internet Archive and time to its users as they would know which snapshots make sense to compare. Comparing snapshots that are 100% or 5% identical would not help the users gain any insights on how the page has changed.
