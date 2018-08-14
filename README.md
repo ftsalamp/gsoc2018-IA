@@ -71,8 +71,8 @@ During the development of *wayback-discover-diff*, my mentor and I saw that it�
 
 ### wayback-diff
 
-Dependent on the look of the Wayback Machine’s User Interface wayback-diff might require minor changes to its look to match the WMB’s style.
+Depending on the look of the Wayback Machine’s User Interface, wayback-diff might require minor changes to its look to match the WMB’s style.
 
 ### wayback-discover-diff
 
-A feature that is missing right now from the wayback-discover-diff is to calculate how much two snapshots have changed. Since their Simhash value would already be calculated and in the database, getting the distance between two snapshots’ simhash values would be a very useful piece of information. Integrating this kind of information in the Wayback Machine would help its users identify how much a webpage has changed from a specific moment in time. In addition, it would help save both resources for the Internet Archive and time to its users as they would know which snapshots make sense to compare. Comparing snapshots that are 100% or 5% identical would not help the users gain any insights on how the page has changed.
+A feature that is missing right now from the wayback-discover-diff is to calculate how much two snapshots have changed. Since their Simhash value would have already been calculated and would be in the database, getting the distance between the two snapshots’ simhash values would be a very useful piece of information. Integrating this kind of information in the Wayback Machine would help its users identify how much a webpage has changed from a specific moment in time. In addition, it would help save both resources for the Internet Archive and save users’ time as they would know which snapshots it makes sense to compare. Comparing snapshots that are 100% or 5% identical would not help the users gain any insights on how the page has changed.
